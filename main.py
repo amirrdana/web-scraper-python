@@ -2,7 +2,6 @@ import csv
 import sys
 import requests
 from bs4 import BeautifulSoup
-from itertools import zip_longest
 
 if len(sys.argv) != 2:
     print("Usage: python main.py <website>")
