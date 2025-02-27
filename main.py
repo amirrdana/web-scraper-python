@@ -14,8 +14,14 @@ if "https://" not in website and "www." in website:
 elif "https://" not in website and "www." not in website:
     website = f"https://www.{website}"
 elif "https://" in website and "www." not in website:
-    pass
-    # implement
+    stop_point = 0
+    trailer = ''
+    for char in website:
+        stop_point += 1
+        if (char == '/' and trailer == '/'):
+            break
+        trailer = char
+    website = "https://www." + website[stop_point:]
 
 try :
     r = requests.get(website)
@@ -46,3 +52,4 @@ with open('output.csv', 'w', newline='', encoding='utf-8') as out:
     for tag_name, elements in data.items():
         for element in elements:
             writer.writerow([tag_name, element['attribute'], element['text']])
+    print("Write to output successful")
